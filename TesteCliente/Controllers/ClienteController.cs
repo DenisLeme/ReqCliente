@@ -21,7 +21,7 @@ namespace TesteCliente.Controllers
         [HttpGet]
         public async Task<JsonResult> PegarClientes()
         {
-            return Json(await _contexto.Cliente.ToListAsync());
+            return Json(await _contexto.Clientes.ToListAsync());
         }
     }
 }

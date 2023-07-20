@@ -18,7 +18,7 @@
                 
             </hr>
 
-                <div class="p-5 rounded shadow-sm" id="divTable">
+                <div class="p-5 rounded shadow-sm" id="divTabela">
 
                 </div>
             </div>
@@ -37,8 +37,45 @@
             $.ajax({
                 url: "Cliente/PegarClientes",
                 method: "GET",
+                sucess: function(clientes){
+                    montarTabela(clientes);
+                }
 
             })
+        }
+
+        function montarTabela(clientes){
+            var indice = 0;
+            var divTabela = document.getElementById("divTabela");
+            var tabela = '<table class="table table-sm table-hover table-striped tabela">';
+            tabela += '<thead>';
+            tabela += '<tr>';
+            tabela += '<th>Cliente</th>';
+            tabela += '<th>TelefoneContato</th>';
+            tabela += '<th>Cidade</th>';
+            tabela += '<th>Bairro</th>';
+            tabela += '<th>DataCadastro</th>';
+            tabela += '<th>DataAtualizacao</th>';
+            tabela += '</tr>';
+            tabela += '</thead>';
+            tabela += '<tbody>';
+
+            for(indice = 0; indice < clientes.lenght; indice++){
+                tabela += `<tr> id="${clientes[indice].clienteId}">`;
+                tabela += `<td>${clientes[indice].cliente}</td>`;
+                tabela += `<td>${clientes[indice].TelefoneContato}</td>`;
+                tabela += `<td>${clientes[indice].Cidade}</td>`;
+                tabela += `<td>${clientes[indice].Bairro}</td>`;
+                tabela += `<td>${clientes[indice].DataCadastro}</td>`;
+                tabela += `<td>${clientes[indice].DataAtualizacao}</td>`;
+                tabela += `<td><button class="btn btn-sm btn-outline-info" onclick="PegarClientesPeloId(${clientes[indice].clienteId})">Atualizar</button> </td>
+                        <button class="btn btn-sm btn-outline-danger" onclick="ExcluirClientes(${clientes[indice].clienteId})">Excluir </button> `;
+                tabela += '</tr>'
+            }
+            tabela += '</tbody>';
+            tabela += '</table>';
+
+            divTabela.innerHTML = tabela;
         }
 
     </script>

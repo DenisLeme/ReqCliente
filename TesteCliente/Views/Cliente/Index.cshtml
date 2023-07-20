@@ -1,0 +1,46 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Clientes Cadastrados";
+}
+
+<div class="p-5">
+    <div class="border border-light border-3 rounded">
+        <div class="p-5">
+            <div class="row">
+                <div class="col-8">
+                    <h6>Clientes Cadastrados</h6>
+                </div>
+                <div class="col-4">
+                    <button class="btn btn-sm btn-outline-sucess novoCliente btn-dark">Novo Cliente</button>
+                </div>
+                
+            </hr>
+
+                <div class="p-5 rounded shadow-sm" id="divTable">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function(){
+            carregarDados();
+        });
+
+        function carregarDados(){
+            $.ajax({
+                url: "Cliente/PegarClientes",
+                method: "GET",
+
+            })
+        }
+
+    </script>
+}
+

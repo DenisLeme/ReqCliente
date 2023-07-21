@@ -7,22 +7,29 @@
 
 <div class="p-5">
     <div class="border border-light border-3 rounded">
-        <div class="p-5">
-            <div class="row">
-                <div class="col-8">
-                    <h6>Clientes Cadastrados</h6>
+        <div class="container">
+            <div class="p-5">
+                <div class="row">
+                    <div class="col-8">
+                        <h6>Clientes cadastrados</h6>
+                    </div>
+                    <div class="col-4">
+                        <button class="btn btn-sm btn-outline-success novoCliente">Novo Cliente</button>
+                    </div>
                 </div>
-                <div class="col-4">
-                    <button class="btn btn-sm btn-outline-sucess btn-dark novoCliente">Novo Cliente</button>
-                </div>
-                
-            </hr>
+
+                <hr />
+                        </div>
+        </div>
+    </div>
+</div>
+</div>
 
                 <div class="p-5 rounded shadow-sm" id="divTabela">
 
-                </div>
-            </div>
-        </div>
+               
+
+    
         <div id="modal" class="modal fade" role="dialog">
 
             <div class="modal-dialog">
@@ -41,36 +48,36 @@
 
                         <div class="form-group">
                             <label>Tipo de Cliente</label>
-                            <input type="hidden" class="form-control form-control-sm idade" />
+                            <input type="hidden" class="form-control form-control-sm tipoCliente" />
                         </div>
 
                         <div class="form-group">
                             <label>Nome do contato</label>
-                            <input type="text" class="form-control form-control-sm profissao" />
+                            <input type="text" class="form-control form-control-sm nomeContato" />
                             <span class="text-danger erroNome d-none">Digite um Nome</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label>Telefone de Contato</label>
-                        <input type="text" class="form-control form-control-sm profissao" />
+                        <input type="text" class="form-control form-control-sm telefoneContato" />
                         <span class="text-danger erroTelefone d-none">Digite um telefone</span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label>Cidade</label>
-                    <input type="text" class="form-control form-control-sm profissao" />
+                    <input type="text" class="form-control form-control-sm cidade" />
                     <span class="text-danger erroCidade d-none">Digite uma cidade</span>
                 </div>
             </div>
             <div class="form-group">
                 <label>Bairro</label>
-                <input type="text" class="form-control form-control-sm profissao" />
+                <input type="text" class="form-control form-control-sm bairro" />
                 <span class="text-danger erroBairro d-none">Digite um Bairro</span>
             </div>
         </div>
         <div class="form-group">
             <label>Logradouro</label>
-            <input type="text" class="form-control form-control-sm profissao" />
+            <input type="text" class="form-control form-control-sm logradouro" />
             <span class="text-danger erroProfissao d-none">Digite um CEP</span>
         </div>
     </div>
@@ -86,7 +93,7 @@
 </div>
     </div>
 </div>
-
+ </div>
 
 @section scripts{
     <script>
@@ -96,55 +103,31 @@
 
         function carregarDados(){
             $.ajax({
-                url: "Cliente/PegarClientes",
+                url: "Clientes/PegarClientes",
                 method: "GET",
                 sucess: function(clientes){
                     montarTabela(clientes);
                 }
 
-            })
+            });
         }
-
-        function montarTabela(clientes){
-            var indice = 0;
-            var divTabela = document.getElementById("divTabela");
-            var tabela = '<table class="table table-sm table-hover table-striped tabela">';
-            tabela += '<thead>';
-            tabela += '<tr>';
-            tabela += '<th>Cliente</th>';
-            tabela += '<th>TelefoneContato</th>';
-            tabela += '<th>Cidade</th>';
-            tabela += '<th>Bairro</th>';
-            tabela += '<th>DataCadastro</th>';
-            tabela += '<th>DataAtualizacao</th>';
-            tabela += '</tr>';
-            tabela += '</thead>';
-            tabela += '<tbody>';
-
-            for(indice = 0; indice < clientes.lenght; indice++){
-                tabela += `<tr> id="${clientes[indice].clienteId}">`;
-                tabela += `<td>${clientes[indice].cliente}</td>`;
-                tabela += `<td>${clientes[indice].TelefoneContato}</td>`;
-                tabela += `<td>${clientes[indice].Cidade}</td>`;
-                tabela += `<td>${clientes[indice].Bairro}</td>`;
-                tabela += `<td>${clientes[indice].DataCadastro}</td>`;
-                tabela += `<td>${clientes[indice].DataAtualizacao}</td>`;
-                tabela += `<td><button class="btn btn-sm btn-outline-info" onclick="PegarClientesPeloId(${clientes[indice].clienteId})">Atualizar</button> </td>
-                        <button class="btn btn-sm btn-outline-danger" onclick="ExcluirClientes(${clientes[indice].clienteId})">Excluir </button> `;
-                tabela += '</tr>'
-            }
-            tabela += '</tbody>';
-            tabela += '</table>';
-
-            divTabela.innerHTML = tabela;
-        }
-
-        $(".novoCliente").click(function () {
+         $(".novoCliente").click(function () {
             escolherTituloModal("Cadastro de novos clientes");
             mostrarModal();
             limparModal();
-            %('.clienteId').val(0);
+            $('.clienteId').val(0);
         });
+
+        $(".btnSalvar").click(function (){
+            var clientes = {
+                clienteId: $('.clienteId').val(),
+                cliente: $('.cliente').val(),
+                nomeContato: $('.nomeContato').val()
+            };
+
+
+
+        })
 
         function escolherTituloModal(texto){
             $(".modal-title").text(texto);
@@ -164,6 +147,41 @@
             $(".logradouro").val('');
 
         }
+        function montarTabela(clientes){
+            var indice = 0;
+            var divTabela = document.getElementById("divTabela");
+            var tabela = '<table class="table table-sm table-hover table-striped tabela">';
+            tabela += '<thead>';
+            tabela += '<tr>';
+            tabela += '<th>Cliente</th>';
+            tabela += '<th>TelefoneContato</th>';
+            tabela += '<th>Cidade</th>';
+            tabela += '<th>Bairro</th>';
+            tabela += '<th>DataCadastro</th>';
+            tabela += '<th>DataAtualizacao</th>';
+            tabela += '</tr>';
+            tabela += '</thead>';
+            tabela += '<tbody>';
+
+            for(indice = 0; indice < clientes.lenght; indice++){
+                tabela += `<tr> id="${clientes[indice].clienteId}">`;
+                tabela += `<td>${clientes[indice].cliente}</td>`;
+                tabela += `<td>${clientes[indice].telefoneContato}</td>`;
+                tabela += `<td>${clientes[indice].cidade}</td>`;
+                tabela += `<td>${clientes[indice].bairro}</td>`;
+                tabela += `<td>${clientes[indice].dataCadastro}</td>`;
+                tabela += `<td>${clientes[indice].dataAtualizacao}</td>`;
+                tabela += `<td><button class="btn btn-sm btn-outline-info" onclick="PegarClientesPeloId(${clientes[indice].clienteId})">Atualizar</button> </td>
+                        <button class="btn btn-sm btn-outline-danger" onclick="ExcluirClientes(${clientes[indice].clienteId})">Excluir </button> `;
+                tabela += '</tr>'
+            }
+            tabela += '</tbody>';
+            tabela += '</table>';
+
+            divTabela.innerHTML = tabela;
+        }
+
+       
 
     </script>
 }

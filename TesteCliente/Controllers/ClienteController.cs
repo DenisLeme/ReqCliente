@@ -23,5 +23,17 @@ namespace TesteCliente.Controllers
         {
             return Json(await _contexto.Clientes.ToListAsync());
         }
+
+        [HttpPost]
+        public async Task<JsonResult> NovosClientes(Clientes clientes)
+        {
+            if(ModelState.IsValid)
+            {
+                await _contexto.Clientes.AddAsync(clientes);
+                await _contexto.SaveChangesAsync();
+                return Json(clientes);
+            }
+            return Json(ModelState);
+        }
     }
 }

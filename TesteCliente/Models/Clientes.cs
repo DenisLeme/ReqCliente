@@ -1,9 +1,9 @@
 ﻿namespace TesteCliente.Models
 {
-    public class ClienteModel
+    public class Clientes
     {
         public decimal ClienteId { get; set; }
-        public string Cliente { get; set; }
+        public string? Cliente { get; set; }
         public string TipoCliente { get; set; }
         public string NomeContato { get; set; }
         public decimal TelefoneContato { get; set; }

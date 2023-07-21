@@ -13,7 +13,7 @@
                     <h6>Clientes Cadastrados</h6>
                 </div>
                 <div class="col-4">
-                    <button class="btn btn-sm btn-outline-sucess novoCliente btn-dark">Novo Cliente</button>
+                    <button class="btn btn-sm btn-outline-sucess btn-dark novoCliente">Novo Cliente</button>
                 </div>
                 
             </hr>
@@ -23,9 +23,70 @@
                 </div>
             </div>
         </div>
+        <div id="modal" class="modal fade" role="dialog">
 
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title"></h6>
+                    </div>
+
+                    <div class="modal-body">
+                        <input type="hidden" class="form-control form-control-sm clienteId" />
+                        <div class="form-group">
+                            <label>Cliente</label>
+                            <input type="text" class="form-control form-control-sm nome" />
+                            <span class="text-danger erroCliente d-none"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Tipo de Cliente</label>
+                            <input type="hidden" class="form-control form-control-sm idade" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Nome do contato</label>
+                            <input type="text" class="form-control form-control-sm profissao" />
+                            <span class="text-danger erroNome d-none">Digite um Nome</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Telefone de Contato</label>
+                        <input type="text" class="form-control form-control-sm profissao" />
+                        <span class="text-danger erroTelefone d-none">Digite um telefone</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Cidade</label>
+                    <input type="text" class="form-control form-control-sm profissao" />
+                    <span class="text-danger erroCidade d-none">Digite uma cidade</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Bairro</label>
+                <input type="text" class="form-control form-control-sm profissao" />
+                <span class="text-danger erroBairro d-none">Digite um Bairro</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Logradouro</label>
+            <input type="text" class="form-control form-control-sm profissao" />
+            <span class="text-danger erroProfissao d-none">Digite um CEP</span>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="form-group">
+            <input type="button" value="Salvar" class="btn btn-sm btn-outline-success btnSalvar" />
+            <input type="button" value="Cancelar" class="btn btn-sm btn-light" data-bs-dismiss="modal" />
+        </div>
     </div>
 </div>
+    </div>
+
+</div>
+    </div>
+</div>
+
 
 @section scripts{
     <script>
@@ -76,6 +137,32 @@
             tabela += '</table>';
 
             divTabela.innerHTML = tabela;
+        }
+
+        $(".novoCliente").click(function () {
+            escolherTituloModal("Cadastro de novos clientes");
+            mostrarModal();
+            limparModal();
+            %('.clienteId').val(0);
+        });
+
+        function escolherTituloModal(texto){
+            $(".modal-title").text(texto);
+        }
+        function mostrarModal(){
+            new bootstrap.Modal($("#modal"), {}).show();
+        }
+
+        function limparModal(){
+            $(".clienteId").val('');
+            $(".cliente").val('');
+            $(".tipoCliente").val('');
+            $(".nomeContato").val('');
+            $(".telefoneContato").val('');
+            $(".cidade").val('');
+            $(".bairro").val('');
+            $(".logradouro").val('');
+
         }
 
     </script>

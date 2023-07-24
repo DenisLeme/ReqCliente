@@ -25,11 +25,7 @@
 </div>
 </div>
 
-                <div class="p-5 rounded shadow-sm" id="divTabela">
-
-               
-
-    
+                <div class="p-5 rounded shadow-sm w-50 h-50" id="divTabela">
         <div id="modal" class="modal fade" role="dialog">
 
             <div class="modal-dialog">
@@ -39,7 +35,6 @@
                     </div>
 
                     <div class="modal-body">
-                        <input type="hidden" class="form-control form-control-sm clienteId" />
                         <div class="form-group">
                             <label>Cliente</label>
                             <input type="text" class="form-control form-control-sm nome" />
@@ -48,7 +43,7 @@
 
                         <div class="form-group">
                             <label>Tipo de Cliente</label>
-                            <input type="hidden" class="form-control form-control-sm tipoCliente" />
+                            <input type="text" class="form-control form-control-sm tipoCliente" />
                         </div>
 
                         <div class="form-group">
@@ -56,44 +51,41 @@
                             <input type="text" class="form-control form-control-sm nomeContato" />
                             <span class="text-danger erroNome d-none">Digite um Nome</span>
                         </div>
-                    </div>
                     <div class="form-group">
                         <label>Telefone de Contato</label>
-                        <input type="text" class="form-control form-control-sm telefoneContato" />
+                        <input type="tel" class="form-control form-control-sm telefoneContato" />
                         <span class="text-danger erroTelefone d-none">Digite um telefone</span>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label>Cidade</label>
-                    <input type="text" class="form-control form-control-sm cidade" />
-                    <span class="text-danger erroCidade d-none">Digite uma cidade</span>
-                </div>
+                    <div class="form-group">
+                        <label>Cidade</label>
+                        <input type="text" class="form-control form-control-sm cidade" />
+                        <span class="text-danger erroCidade d-none">Digite uma cidade</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Bairro</label>
+                        <input type="text" class="form-control form-control-sm bairro" />
+                        <span class="text-danger erroBairro d-none">Digite um Bairro</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Logradouro</label>
+                        <input type="number" class="form-control form-control-sm logradouro" />
+                        <span class="text-danger erroProfissao d-none">Digite um CEP</span>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="form-group">
+                            <input type="button" value="Salvar" class="btn btn-sm btn-outline-success btnSalvar" />
+                            <input type="button" value="Cancelar" class="btn btn-sm btn-light" data-bs-dismiss="modal" />
+                        </div>
+                    </div>                   
+                </div>             
             </div>
-            <div class="form-group">
-                <label>Bairro</label>
-                <input type="text" class="form-control form-control-sm bairro" />
-                <span class="text-danger erroBairro d-none">Digite um Bairro</span>
-            </div>
+            
         </div>
-        <div class="form-group">
-            <label>Logradouro</label>
-            <input type="text" class="form-control form-control-sm logradouro" />
-            <span class="text-danger erroProfissao d-none">Digite um CEP</span>
-        </div>
+        
     </div>
-    <div class="modal-footer">
-        <div class="form-group">
-            <input type="button" value="Salvar" class="btn btn-sm btn-outline-success btnSalvar" />
-            <input type="button" value="Cancelar" class="btn btn-sm btn-light" data-bs-dismiss="modal" />
-        </div>
-    </div>
-</div>
+    
     </div>
 
-</div>
-    </div>
-</div>
- </div>
 
 @section scripts{
     <script>

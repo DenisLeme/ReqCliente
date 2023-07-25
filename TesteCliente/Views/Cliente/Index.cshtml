@@ -110,16 +110,16 @@
             $('.clienteId').val(0);
         });
 
-        $(".btnSalvar").click(function (){
-            var clientes = {
-                clienteId: $('.clienteId').val(),
-                cliente: $('.cliente').val(),
-                nomeContato: $('.nomeContato').val()
-            };
+        //$(".btnSalvar").click(function (){
+        //    var clientes = {
+        //        clienteId: $('.clienteId').val(),
+        //        cliente: $('.cliente').val(),
+        //        nomeContato: $('.nomeContato').val()
+        //    };
 
 
 
-        })
+      //  })
 
         function escolherTituloModal(texto){
             $(".modal-title").text(texto);
@@ -173,7 +173,69 @@
             divTabela.innerHTML = tabela;
         }
 
-       
+
+//        $(".btnSalvar").click(function () {
+//var clientes = {
+//clienteId: $('.clienteId').val(),
+//cliente: $('.cliente').val(),
+//tipoCliente: $('.tipoCliente').val(),
+//nomeContato: $('.nomeContato').val(),
+//telefone: $('.telefoneContato').val(),
+//cidade: $('.cidade').val(),
+//bairro: $('.bairro').val(),
+//logradouro: $('.logradouro').val();
+//};
+//if(validarCliente(clientes)){
+//    if(parseInt(clientes.clienteId) > 0)
+//    atualizarCliente(clientes);
+
+//    criarCliente(clientes);
+
+
+//       }
+//        });
+
+        function criarCliente(clientes){
+            $.ajax({
+                url: "Clientes/NovoCliente",
+                method: 'POST',
+                data:{
+                    clientes: clientes
+                },
+                success: function(clienteCriado){
+                    $("#modal").modal('hide');
+                    var linhaNovoCliente = `<tr id="${clienteCriado.clienteId}"`;
+                    linhaNovoCliente += `<td>${clienteCriado.cliente}</td>`
+                }
+            })
+        }
+       function validarCliente(clientes){
+           let clienteValido = validarCliente(clientes.cliente);
+           let tipoCliente = validarTipo(clientes.tipoCliente);
+           let clienteNome = validarNome(clientes.nomeContato);
+           let clienteTelefone = validarTelefone(clientes.telefone);
+           let clienteCidade = validarCidade(clientes.cidade);
+           let clienteBairro = validarBairro(clientes.bairro);
+            let clienteLogradouro = validarLogradouro(clientes.logradouro);
+
+            if(clienteValido == true && tipoCliente == true && clienteNome == true && clienteTelefone == true && clienteBairro == true && clienteLogradouro == true)
+
+           return true;
+
+            return false;
+        }
+
+        function validarCliente(cliente){
+            let clienteValido = true;
+
+            if(nome.trim() == '' || clientes == undefined){
+                $(".cliente").addClass('is-invalid');
+                $(".erroCliente").text("Preencha o nome");
+                $("erroCliente").removeClass("d-none");
+                clienteValido = false;
+            }
+        }
+ 
 
     </script>
 }

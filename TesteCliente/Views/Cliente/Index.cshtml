@@ -14,7 +14,7 @@
                         <h6>Clientes cadastrados</h6>
                     </div>
                     <div class="col-4">
-                        <button class="btn btn-sm btn-outline-success novoCliente">Novo Cliente</button>
+                        <button class="btn btn-sm btn-outline-success novoCliente" >Novo Cliente</button>
                     </div>
                 </div>
 
@@ -23,7 +23,7 @@
         </div>
     </div>
 </div>
-</div>
+
 
                 <div class="p-5 rounded shadow-sm w-50 h-50" id="divTabela">
         <div id="modal" class="modal fade" role="dialog">
@@ -174,26 +174,26 @@
         }
 
 
-//        $(".btnSalvar").click(function () {
-//var clientes = {
-//clienteId: $('.clienteId').val(),
-//cliente: $('.cliente').val(),
-//tipoCliente: $('.tipoCliente').val(),
-//nomeContato: $('.nomeContato').val(),
-//telefone: $('.telefoneContato').val(),
-//cidade: $('.cidade').val(),
-//bairro: $('.bairro').val(),
-//logradouro: $('.logradouro').val();
-//};
-//if(validarCliente(clientes)){
-//    if(parseInt(clientes.clienteId) > 0)
-//    atualizarCliente(clientes);
+       $(".btnSalvar").click(function () {
+var clientes = {
+clienteId: $('.clienteId').val(),
+cliente: $('.cliente').val(),
+tipoCliente: $('.tipoCliente').val(),
+nomeContato: $('.nomeContato').val(),
+telefone: $('.telefoneContato').val(),
+cidade: $('.cidade').val(),
+bairro: $('.bairro').val(),
+logradouro: $('.logradouro').val();
+};
+if(validarCliente(clientes)){
+    if(parseInt(clientes.clienteId) > 0)
+    atualizarCliente(clientes);
 
-//    criarCliente(clientes);
+    criarCliente(clientes);
 
 
-//       }
-//        });
+       }
+        });
 
         function criarCliente(clientes){
             $.ajax({

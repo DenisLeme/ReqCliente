@@ -174,7 +174,7 @@
         }
 
 
-       $(".btnSalvar").click(function () {
+        $(".btnSalvar").click(function () {
 var clientes = {
 clienteId: $('.clienteId').val(),
 cliente: $('.cliente').val(),
@@ -206,8 +206,10 @@ if(validarCliente(clientes)){
                     $("#modal").modal('hide');
                     var linhaNovoCliente = `<tr id="${clienteCriado.clienteId}"`;
                     linhaNovoCliente += `<td>${clienteCriado.cliente}</td>`
+                    linhaNovoCliente += `<td><button class="btn btn-sm btn-outline-info"
+                                    onclick="PegarClientesPeloId(${PegarClientesPeloId.clienteId})>Cadastrar</button> |</td>"`;
                 }
-            })
+            });
         }
        function validarCliente(clientes){
            let clienteValido = validarCliente(clientes.cliente);
